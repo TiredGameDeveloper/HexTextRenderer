@@ -1,0 +1,74 @@
+
+
+
+# Hex goes here gang gang, HAS TO BE EQUAL WIDTH AND HEIGHT
+EveryColor = []
+print(len(EveryColor))
+
+import os
+import math
+
+ColoredOrder = [40,41,43,42,46,44,45,47,7]
+
+
+
+
+
+AllPossible = [str(0),str(1),str(2),str(3),str(4),str(5),str(6),str(7),str(8),str(9),"a","b","c","d","e","f"]
+def Find(Text):
+     for j in range(len(AllPossible)):
+        if Text == AllPossible[j]:
+            return(j)
+            break
+
+print(AllPossible[15])
+
+def BTN(Binary):
+    Total = []
+    for i in range(len(str(Binary))):
+        Total.append(Find(str(Binary)[i]))
+    return(Total)
+
+
+
+
+
+def HexCrush(HexColor):
+    Total = (BTN(HexColor))    
+  #  print("Total: ")
+   # print(Total[1])
+    R,G,B = [int(Total[1])*16 + int(Total[2])*1,int(Total[3])*16 + int(Total[4])*1,int(Total[5])*16 + int(Total[6])*1,]
+    
+    return(round((R*65536+G*256+B)/1864135))
+
+
+
+
+
+ColorsList = []
+FullList = []
+Length = (int(math.sqrt(len(EveryColor))))
+Place = 0
+for j in range(Length):
+    ColorsList = []
+
+    for i in range(Length):
+        ColorsList.append(HexCrush(EveryColor[Place]))
+        Place += 1
+   # print(ColorsList)
+    FullList.append(ColorsList)
+
+
+
+#for i in range(len(FullList)):
+   #print(FullList[i])
+
+print((FullList[0][0]))
+#def Color(SelectedColor):
+   # print('\033[' + str(ColoredOrder[SelectedColor]) + "m" + " ")
+for i in range(len(FullList)):
+    Line = ("")
+    for j in range(len(FullList[i])):
+        Line = Line + '\033[' + str(ColoredOrder[FullList[i][j]-1]) + "m" + "龘."
+        
+    print(Line)
